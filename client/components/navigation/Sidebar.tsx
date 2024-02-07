@@ -1,9 +1,9 @@
-// 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { PiLadder } from 'react-icons/pi';
 import { MdOutlineDashboard } from 'react-icons/md';
 import { HiOutlineViewGridAdd } from 'react-icons/hi';
+import { MdOutlineNotificationsNone } from 'react-icons/md';
 import { TbReportMoney, TbAdjustmentsDollar } from 'react-icons/tb';
 
 const menuLinks = [
@@ -32,6 +32,11 @@ const menuLinks = [
     icon: <TbReportMoney />,
     link: '/sales',
   },
+  {
+    name: 'Notifications',
+    icon: <MdOutlineNotificationsNone />,
+    link: '/notifications',
+  },
 ];
 
 interface SidebarProps {
@@ -55,7 +60,7 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
           {menuLinks.map((link, index) => (
             <Link href={link.link} key={index}>
               <li
-                className={`flex items-center justify-start p-4 md:p-5 ${
+                className={`flex items-center justify-start p-4 md:p-5 mt-0.5 ${
                   pathname === link.link
                     ? 'bg-slate-700 text-white'
                     : 'text-gray-500 hover:bg-gray-100'

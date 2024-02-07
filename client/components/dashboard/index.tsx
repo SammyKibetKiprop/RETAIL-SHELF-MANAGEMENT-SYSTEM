@@ -5,16 +5,19 @@ const cardItems = [
     id: 1,
     title: 'Shelves',
     color: 'zinc', // 700,400
+    href: '/shelf',
   },
   {
     id: 2,
     title: 'Sales',
     color: 'amber', // 600,100
+    href: '/sales',
   },
   {
     id: 3,
     title: 'Product Type',
     color: 'sky', // 600,100
+    href: '/product',
   },
 ];
 

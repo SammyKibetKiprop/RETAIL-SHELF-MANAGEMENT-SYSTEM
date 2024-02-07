@@ -5,6 +5,27 @@ import { Card } from '@mui/material';
 
 const tags = ['Total Products', 'Products Sold', 'Sales'];
 
+const shelves = [
+  {
+    productName: 'Product 1',
+    serialNumber: '123',
+    shelfId: '123',
+    date: '2021-09-21',
+  },
+  {
+    productName: 'Product 2',
+    serialNumber: '456',
+    shelfId: '456',
+    date: '2021-09-21',
+  },
+  {
+    productName: 'Product 3',
+    serialNumber: '789',
+    shelfId: '789',
+    date: '2021-09-21',
+  },
+];
+
 const Shelf = () => {
   return (
     <div className='flex flex-col gap-14 lg:gap-24 content-between items-center'>
@@ -14,7 +35,7 @@ const Shelf = () => {
         ))}
       </div>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between items-center gap-10 w-full'>
-        <ShelfDataTable />
+        <ShelfDataTable shelves={shelves} />
         <SalesPerShift />
       </div>
     </div>

@@ -33,7 +33,10 @@ const Auth = () => {
           label='Password'
           variant='filled'
         />
-        <button className=' bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-sky-500 text-white rounded-md p-4 font-semibold'>
+        <button
+          className=' bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-sky-500 text-white rounded-md p-4 font-semibold'
+          type='submit'
+        >
           {authState.isLogin ? 'Login' : 'Register'}
         </button>
       </form>
