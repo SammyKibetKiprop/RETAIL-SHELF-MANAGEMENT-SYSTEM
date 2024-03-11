@@ -1,4 +1,5 @@
 import { TbMenuDeep } from 'react-icons/tb';
+import UserView from './UserView';
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -15,11 +16,7 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
         <h1>Stock Tracker</h1>
       </div>
 
-      {/* a small dropdown to manage accounts */}
-      <div className='flex items-center space-x-2'>
-        <div className='text-sm font-medium'>John Doe</div>
-        <div className='w-10 h-10 rounded-full bg-gray-300'></div>
-      </div>
+      <UserView />
     </header>
   );
 };

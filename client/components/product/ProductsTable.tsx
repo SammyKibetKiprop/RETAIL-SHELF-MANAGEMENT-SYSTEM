@@ -1,3 +1,5 @@
+import { useRouter } from 'next/navigation';
+
 import {
   Paper,
   Table,
@@ -10,6 +12,8 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { Product } from '@/utils/interfaces';
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -20,16 +24,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-interface Product {
-  productId: string;
-  productName: string;
-  productDescription: string;
-  productPrice: number;
-  shelfId: string;
-  image: string;
-}
-
 const ProductsTable = ({ products }: { products: Product[] }) => {
+  const router = useRouter();
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -40,21 +37,25 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
             <StyledTableCell>Product Price</StyledTableCell>
             <StyledTableCell>Shelf ID</StyledTableCell>
             <StyledTableCell>Image</StyledTableCell>
+            <StyledTableCell>Weight</StyledTableCell>
+            <StyledTableCell>Stock</StyledTableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
           {products.map((product) => (
-            <TableRow key={product.productId}>
-              <StyledTableCell>{product.productName}</StyledTableCell>
-              <StyledTableCell>
-                {product.productDescription}
-              </StyledTableCell>
-              <StyledTableCell>
-                {product.productPrice}
-              </StyledTableCell>
-              <StyledTableCell>{product.shelfId}</StyledTableCell>
-              <StyledTableCell>{product.image}</StyledTableCell>
+            <TableRow
+              key={product.id}
+              className='hover:bg-slate-100 hover:cursor-pointer'
+              onClick={() => router.push(`/product/${product.id}`)}
+            >
+              <StyledTableCell>{product.name}</StyledTableCell>
+              <StyledTableCell>{product.description}</StyledTableCell>
+              <StyledTableCell>{product.price}</StyledTableCell>
+              <StyledTableCell>{product.shelf}</StyledTableCell>
+              <StyledTableCell>{product.image_url}</StyledTableCell>
+              <StyledTableCell>{product.weight}</StyledTableCell>
+              <StyledTableCell>{product.stock}</StyledTableCell>
             </TableRow>
           ))}
         </TableBody>
