@@ -76,6 +76,9 @@ export const userLogoutHandler = async () => {
 // get all shelves: path: app\(home)\shelf\page.tsx
 export const getAllShelves = async () => {
   // fetch all shelves
+  const response = await fetch('http://127.0.0.1:8000/apis/shelves');
+  const shelves = await response.json();
+  return shelves;
 
   return PLACEHOLDER_SHELVES;
 };
