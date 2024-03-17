@@ -133,7 +133,15 @@ export const updateShelfHandler = async (updatedShelfData: Shelf) => {
 
 // delete a shelf: path: app\(home)\shelf\page.tsx
 export const deleteShelfHandler = async (shelfId: string) => {
-  console.log(`Shelf ${shelfId} deleted...`);
+  try {
+    const response = await fetch(`${baseUrl}/shelves/${shelfId}`, {
+      method: 'DELETE',
+    });
+    const shelf = await response.json();
+    return shelf;
+  } catch (error) {
+    console.error("Error:", error);
+  }
 };
 
 // ====== PRODUCT ========
