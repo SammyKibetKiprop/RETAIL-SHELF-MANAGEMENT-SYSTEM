@@ -91,14 +91,12 @@ export const getAllShelves = async () => {
 export const getShelf = async (shelfId: string) => {
   // fetch a shelf
   try {
-    
     const response = await fetch(`${baseUrl}/shelves/${shelfId}`);
-    
+
     const shelf = await response.json();
-    
+
     return shelf;
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error:", error);
   }
 
@@ -110,11 +108,11 @@ export const addShelfHandler = async (newShelfData: Shelf) => {
   // add a new shelf
   try {
     const response = await fetch(`${baseUrl}/shelves/`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newShelfData)
+      body: JSON.stringify(newShelfData),
     });
 
     const shelf = await response.json();
@@ -135,7 +133,7 @@ export const updateShelfHandler = async (updatedShelfData: Shelf) => {
 export const deleteShelfHandler = async (shelfId: string) => {
   try {
     const response = await fetch(`${baseUrl}/shelves/${shelfId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     const shelf = await response.json();
     return shelf;
@@ -149,30 +147,101 @@ export const deleteShelfHandler = async (shelfId: string) => {
 // get all products: path: app\(home)\product\page.tsx
 export const getAllProducts = async () => {
   // fetch all products
+  try {
+    const response = await fetch(`${baseUrl}/products`);
 
+    const products = await response.json();
+    return products;
+  } catch (error) {
+    console.error("Error:", error);
+  }
   return PLACEHOLDER_PRODUCTS;
 };
 
 // get a product: path: app\(home)\product\[id]\page.tsx
 export const getProduct = async (productId: string) => {
   // fetch a product
+  try {
+    const response = await fetch(`${baseUrl}/products/${productId}`);
+
+    const product = await response.json();
+    return product;
+  } catch (error) {
+    console.error("Error:", error);
+  }
 
   return PLACEHOLDER_PRODUCTS[0];
 };
 
 // add a new product: path: app\(home)\product\new\page.tsx
 export const addProductHandler = async (newProductData: Product) => {
-  console.log(newProductData);
+  const formData = {
+    name: newProductData.name,
+    description: newProductData.description,
+    price: newProductData.price,
+    image_url: newProductData.image_url,
+    stock: newProductData.stock,
+    weight: newProductData.weight,
+    shelf_id: parseInt(newProductData.shelf),
+  };
+  try {
+    const response = await fetch(`${baseUrl}/products/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const product = await response.json();
+    return product;
+  } catch (error) {
+    console.log(newProductData);
+    console.error("Error:", error);
+  }
 };
 
 // update a product: path: app\(home)\product\page.tsx
 export const updateProductHandler = async (updatedProductData: Product) => {
-  // update a product
   console.log(updatedProductData);
+  // update a product
+  const formData = {
+    name: updatedProductData.name,
+    description: updatedProductData.description,
+    price: updatedProductData.price,
+    image_url: updatedProductData.image_url,
+    stock: updatedProductData.stock,
+    weight: updatedProductData.weight,
+    shelf_id: parseInt(updatedProductData.shelf),
+  };
+  try {
+    const response = await fetch(`${baseUrl}/products/${updatedProductData.id}/`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const product = await response.json();
+    return product;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
 };
 
 // delete a product: path: app\(home)\product\page.tsx
 export const deleteProductHandler = async (productId: string) => {
+  try {
+    const response = await fetch(`${baseUrl}/products/${productId}`, {
+      method: "DELETE",
+    });
+    const product = await response.json();
+    return product;
+  } catch (error) {
+    console.error("Error:", error);
+  }
   console.log(`Product ${productId} deleted...`);
 };
 
